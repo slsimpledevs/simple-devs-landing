@@ -75,13 +75,13 @@ export default function Home() {
   const projects = [
     { 
       name: "InTheZone", 
-      description: "App de productividad basada en Flow State",
+      description: "App de productividad & habit tracker",
       liveUrl: "https://in-the-zone-app.vercel.app/",
       repoUrl: "https://github.com/lautaro1910/InTheZone"
     },
     { 
       name: "Guía Puntana", 
-      description: "Guía turística y comercial de San Luis",
+      description: "Guía comercial de San Luis, encontrá proveedores de servicios y productos",
       liveUrl: "https://guia-puntana.vercel.app/",
       repoUrl: "https://github.com/SimpleDevsSL/guia-puntana"
     },
