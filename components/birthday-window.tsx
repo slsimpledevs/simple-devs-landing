@@ -94,7 +94,7 @@ export function BirthdayWindow({
             className="text-black text-lg"
             style={{ fontFamily: "var(--font-pixel), 'Courier New', monospace" }}
         >
-            Franco es uno de los integrantes de SimpleDevs, 
+            Franco es uno de nuestros integrantes, <br/>
             De parte de todo el equipo de SimpleDevs, <br/>
             ¡te deseamos un día increíble!
         </p>
