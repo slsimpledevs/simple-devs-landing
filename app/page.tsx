@@ -26,24 +26,24 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 100)
-    
+
     // Check for birthday
     const today = new Date()
     // Month is 0-indexed (0 = January)
     if (today.getMonth() === 0 && today.getDate() === 31) {
-        setWindows(prev => ({
-            ...prev,
-            birthday: { ...prev.birthday, isOpen: true }
-        }))
-        // Initial confetti burst
-        setTimeout(() => {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 },
-                zIndex: 9999,
-            });
-        }, 1000)
+      setWindows(prev => ({
+        ...prev,
+        birthday: { ...prev.birthday, isOpen: true }
+      }))
+      // Initial confetti burst
+      setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          zIndex: 9999,
+        });
+      }, 1000)
     }
 
     return () => clearTimeout(timer)
@@ -96,14 +96,14 @@ export default function Home() {
   }
 
   const projects = [
-    { 
-      name: "InTheZone", 
+    {
+      name: "InTheZone",
       description: "App de productividad & habit tracker",
       liveUrl: "https://in-the-zone-app.vercel.app/",
       repoUrl: "https://github.com/lautaro1910/InTheZone"
     },
-    { 
-      name: "Guía Puntana", 
+    {
+      name: "Guía Puntana",
       description: "Guía comercial de San Luis, encontrá proveedores de servicios y productos",
       liveUrl: "https://guia-puntana.vercel.app/",
       repoUrl: "https://github.com/SimpleDevsSL/guia-puntana"
@@ -127,7 +127,7 @@ export default function Home() {
     setTimeout(() => {
       setIsShutdown(true)
       setIsShuttingDown(false)
-    }, 700) 
+    }, 700)
   }
 
   if (isShutdown) {
@@ -144,32 +144,34 @@ export default function Home() {
       <div className="crt-overlay" />
 
       <main className="pb-10 min-h-screen">
-        {!isMobile && (
-          <div className="absolute top-4 left-4 flex flex-col gap-2 z-0">
-            <DesktopIcon
-              icon={<ComputerIcon />}
-              label="Mi PC"
-              onClick={() => handleOpen("readme")}
-            />
-            <DesktopIcon
-              icon={<FolderIcon />}
-              label="Proyectos"
-              onClick={() => handleOpen("projects")}
-            />
-            <DesktopIcon
-              icon={<MailIcon />}
-              label="Contacto"
-              onClick={() => handleOpen("connect")}
-            />
-            <DesktopIcon
-              icon={<TextFileIcon />}
-              label="Leeme.txt"
-              onClick={() => handleOpen("readme")}
-            />
-          </div>
-        )}
+        <div className={`
+            ${isMobile
+            ? "grid grid-cols-3 gap-4 p-4 pt-8 justify-items-center content-start z-0"
+            : "absolute top-4 left-4 flex flex-col gap-2 z-0"}
+          `}>
+          <DesktopIcon
+            icon={<ComputerIcon />}
+            label="Mi PC"
+            onClick={() => handleOpen("readme")}
+          />
+          <DesktopIcon
+            icon={<FolderIcon />}
+            label="Proyectos"
+            onClick={() => handleOpen("projects")}
+          />
+          <DesktopIcon
+            icon={<MailIcon />}
+            label="Contacto"
+            onClick={() => handleOpen("connect")}
+          />
+          <DesktopIcon
+            icon={<TextFileIcon />}
+            label="Leeme.txt"
+            onClick={() => handleOpen("readme")}
+          />
+        </div>
 
-        <div className={`${isMobile ? "flex flex-col gap-4 p-4 pt-8" : "relative"}`}>
+        <div className="contents">
           {windows.readme.isOpen && (
             <Win98Window
               title={windows.readme.title}
@@ -184,7 +186,7 @@ export default function Home() {
             >
               <div className="bg-white win98-inset p-2 min-h-[200px]" style={{ fontFamily: "var(--font-pixel), 'Courier New', monospace" }}>
                 <pre className="text-sm text-black whitespace-pre-wrap leading-relaxed">
-  {`========================================
+                  {`========================================
           SIMPLEDEVS v1.0
   ========================================
 
@@ -239,7 +241,7 @@ export default function Home() {
                     Ver
                   </button>
                 </div>
-                
+
                 <div className="space-y-1">
                   {projects.map((project, index) => (
                     <div
@@ -256,17 +258,17 @@ export default function Home() {
                           {project.description}
                         </div>
                         <div className="flex gap-2 mt-1">
-                          <a 
-                            href={project.liveUrl} 
-                            target="_blank" 
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className={`text-xs px-1 border border-current hover:bg-white hover:text-black ${index === 0 ? "text-white" : "text-black group-hover:text-white"}`}
                           >
                             Demo
                           </a>
-                          <a 
-                            href={project.repoUrl} 
-                            target="_blank" 
+                          <a
+                            href={project.repoUrl}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className={`text-xs px-1 border border-current hover:bg-white hover:text-black ${index === 0 ? "text-white" : "text-black group-hover:text-white"}`}
                           >
@@ -364,8 +366,8 @@ export default function Home() {
         </div>
       </main>
 
-      <Win98Taskbar 
-        openWindows={openWindowsList} 
+      <Win98Taskbar
+        openWindows={openWindowsList}
         onWindowClick={handleTaskbarClick}
         onShutdown={handleShutdown}
       />

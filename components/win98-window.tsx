@@ -80,11 +80,11 @@ export function Win98Window({
       onMouseDown={onFocus}
       className={`
         win98-outset bg-[#c0c0c0] flex flex-col
-        ${isMobile ? "relative w-full" : "absolute"}
+        ${isMobile ? "fixed inset-0 bottom-8 m-0" : "absolute"}
       `}
       style={
         isMobile
-          ? {}
+          ? { zIndex: zIndex + 50 }
           : {
               left: position.x,
               top: position.y,
